@@ -28,7 +28,7 @@ const intervalId = setInterval(function () {
 
 let arrayrandom = []
 
-// funzione per generale i numeri casuali
+// funzione per generare i numeri casuali
 function randomNumber() {
   for (let i = 0; i < 5; i++) {
     const randomNumbers = Math.floor(Math.random() * 50) + 1
@@ -63,6 +63,7 @@ button.addEventListener(`click`, function (e) {
   message.textContent = 'Numeri indovinati: ' + finalNum.join(', ')
 })
 
+// funzione per selezionare i numeri vincenti
 function checkUserSelection(x, y) {
   const result = []
   for (let i = 0; i < x.length; i++) {
