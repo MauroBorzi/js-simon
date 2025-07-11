@@ -5,7 +5,7 @@ const answersForm = document.getElementById(`answers-form`)
 const instructions = document.getElementById(`instructions`)
 
 // definisco una variabile che mi conta i secondi
-let seconds = 5
+let seconds = 10
 
 // definisco il mio intervallo
 const intervalId = setInterval(function () {
@@ -15,7 +15,7 @@ const intervalId = setInterval(function () {
     answersForm.classList.remove(`d-none`)
     countdown.classList.add(`d-none`)
     numbersList.classList.add(`d-none`)
-    instructions.innerText = `Inserisci i numeri memorizzati! (In qualsiasi ordine)`
+    instructions.innerText = `Inserisci i numeri memorizzati(In qualsiasi ordine!)`
   }
   else {
     countdown.innerText = seconds
@@ -25,6 +25,9 @@ const intervalId = setInterval(function () {
 
 }, 1000)
 
+let arrayRandom = []
+console.log(arrayRandom)
+
 // funzione per generale i numeri casuali
 function randomNumber() {
   for (let i = 0; i < 5; i++) {
@@ -32,7 +35,34 @@ function randomNumber() {
     const listNumber = document.createElement("li")
     listNumber.textContent = randomNumbers
     numbersList.appendChild(listNumber)
+    arrayRandom.push(randomNumbers)
   }
 }
 
 randomNumber();
+
+let selectNumbers = []
+
+
+// recupero il pulsante
+const button = document.querySelector(`.btn`)
+
+// creo l'evento cliccando il pulsante
+button.addEventListener(`click`, function (e) {
+  e.preventDefault()
+
+  // genero il risultato dei numeri inseriti
+  const results = document.querySelectorAll(`.form-control`)
+  const message = document.getElementById(`message`)
+
+  for (let i = 0; i < results.length; i++) {
+    const element = results[i]
+    if (element.type === 'number') {
+      selectNumbers.push(element.value)
+    }
+  }
+
+  message.textContent = 'Numeri inseriti: ' + selectNumbers.join(', ')
+
+
+})
