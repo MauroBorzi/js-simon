@@ -3,6 +3,7 @@ const countdown = document.getElementById(`countdown`)
 const numbersList = document.getElementById(`numbers-list`)
 const answersForm = document.getElementById(`answers-form`)
 const instructions = document.getElementById(`instructions`)
+const message = document.getElementById(`message`)
 
 // definisco una variabile che mi conta i secondi
 let seconds = 10
@@ -25,8 +26,7 @@ const intervalId = setInterval(function () {
 
 }, 1000)
 
-let arrayRandom = []
-console.log(arrayRandom)
+let arrayrandom = []
 
 // funzione per generale i numeri casuali
 function randomNumber() {
@@ -35,7 +35,7 @@ function randomNumber() {
     const listNumber = document.createElement("li")
     listNumber.textContent = randomNumbers
     numbersList.appendChild(listNumber)
-    arrayRandom.push(randomNumbers)
+    arrayrandom.push(randomNumbers)
   }
 }
 
@@ -53,16 +53,30 @@ button.addEventListener(`click`, function (e) {
 
   // genero il risultato dei numeri inseriti
   const results = document.querySelectorAll(`.form-control`)
-  const message = document.getElementById(`message`)
-
   for (let i = 0; i < results.length; i++) {
     const element = results[i]
     if (element.type === 'number') {
-      selectNumbers.push(element.value)
+      selectNumbers.push(parseInt(element.value))
     }
   }
-
-  message.textContent = 'Numeri inseriti: ' + selectNumbers.join(', ')
-
-
+  const finalNum = checkUserSelection(selectNumbers, arrayrandom)
+  message.textContent = 'Numeri indovinati: ' + finalNum.join(', ')
 })
+
+function checkUserSelection(x, y) {
+  const result = []
+  for (let i = 0; i < x.length; i++) {
+    if (y.includes(x[i])) {
+      result.push(x[i])
+    }
+  }
+  return result
+}
+
+
+
+
+
+
+
+
