@@ -26,23 +26,33 @@ const intervalId = setInterval(function () {
 
 }, 1000)
 
+
 let arrayrandom = []
 
 // funzione per generare i numeri casuali
 function randomNumber() {
-  for (let i = 0; i < 5; i++) {
+  while (arrayrandom.length < 5) {
     const randomNumbers = Math.floor(Math.random() * 50) + 1
-    const listNumber = document.createElement("li")
-    listNumber.textContent = randomNumbers
-    numbersList.appendChild(listNumber)
-    arrayrandom.push(randomNumbers)
+    if (arrayrandom.includes(randomNumbers) === false) {
+      const listNumber = document.createElement("li")
+      listNumber.textContent = randomNumbers
+      numbersList.appendChild(listNumber)
+      arrayrandom.push(randomNumbers)
+    }
   }
+  // for (let i = 0; i < 5; i++) {
+  //   const randomNumbers = Math.floor(Math.random() * 50) + 1
+  //   const listNumber = document.createElement("li")
+  //   listNumber.textContent = randomNumbers
+  //   numbersList.appendChild(listNumber)
+  //   arrayrandom.push(randomNumbers)
+  // }
 }
 
 randomNumber();
 
-let selectNumbers = []
 
+let selectNumbers = []
 
 // recupero il pulsante
 const button = document.querySelector(`.btn`)
